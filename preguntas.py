@@ -35,7 +35,7 @@ def pregunta_02():
 
     """
     
-    return tlb0.shape[1]
+    return tbl0.shape[1]
 
 
 def pregunta_03():
@@ -52,7 +52,7 @@ def pregunta_03():
     Name: _c1, dtype: int64
 
     """
-    return tbl0.groupby('_c1')['_C1'].count()
+    return tbl0.groupby('_c1')['_c1'].count()
 
 
 def pregunta_04():
@@ -96,7 +96,7 @@ def pregunta_06():
     ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
     """
-    return np.sort(tbl1['_c4'].str.upper().unique())
+    return np.sort(tbl1['_c4'].str.upper().unique()).tolist()
 
 
 def pregunta_07():
@@ -114,7 +114,7 @@ def pregunta_07():
     """
     
     
-    return tbl0.groupby('_c1')['c_2'].sum()
+    return tbl0.groupby('_c1')['_c2'].sum()
 
 
 def pregunta_08():
@@ -155,7 +155,7 @@ def pregunta_09():
     tbl0_y =tbl0.copy()
     tbl0_y[['year','garbage']] = tbl0['_c3'].str.split('-',1,expand=True)
     tbl0_y.pop('garbage')
-    return tbl0
+    return tbl0_y
 
 
 def pregunta_10():
