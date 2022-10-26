@@ -215,15 +215,12 @@ def pregunta_12():
     38   38                    eee:0,fff:9,iii:2
     39   39                    ggg:3,hhh:8,jjj:5
     """
-    groupby_index_tbl2 = pd.DataFrame()
-    tbl2 = tbl2.sort_values(['_c5a'])
-    tbl2[['_c5a','_c5b']] = tbl2[['_c5a','_c5b']].astype(str)
+    lista=[str(tbl2['_c5a'][i])+':'+str(tbl2['_c5b'][i]) for i in range(len(tbl2))]
+    tbl2['_c5']=lista
+    tabla12=tbl2.groupby('_c0')['_c5'].apply(list).reset_index()
+    tabla12['_c5']=tabla12['_c5'].map(lambda x:str(sorted(x[:])).replace('[','').replace(']','').replace("'",'').replace(' ',''))
+    return tabla12
 
-    groupby_index_tbl2['_c0'] = tbl2['_c0']
-    groupby_index_tbl2['_c5'] = tbl2['_c5a'].str.cat(tbl2['_c5b'],sep = ':')
-    groupby_index_tbl2 = groupby_index_tbl2.groupby(['_c0'],as_index=False).agg({'_c5':','.join})
-
-    return groupby_index_tbl2
 
 
 def pregunta_13():
