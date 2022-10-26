@@ -175,7 +175,6 @@ def pregunta_10():
     from pandas.core.groupby import groupby
     for_groupby_tbl0 = pd.DataFrame()
     for_groupby_tbl0[['_c0','_c1']] = tbl0[['_c1','_c2']].copy()
-    #print(for_groupby_tbl0.head())
     for_groupby_tbl0 = for_groupby_tbl0.sort_values(['_c1'])
     groupby_name = for_groupby_tbl0.groupby(['_c0'],as_index=False).agg(
         {
@@ -243,5 +242,5 @@ def pregunta_13():
     D    112
     E    275
     Name: _c5b, dtype: int64
-    """
-    return
+    """   
+    return pd.merge(tbl0, tbl2, on="_c0").groupby('_c1')['_c5b'].sum()
