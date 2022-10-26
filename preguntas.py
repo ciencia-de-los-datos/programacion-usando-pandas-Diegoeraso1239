@@ -172,15 +172,12 @@ def pregunta_10():
     3   D                  1:2:3:5:5:7
     4   E  1:1:2:3:3:4:5:5:5:6:7:8:8:9
     """
-    from pandas.core.groupby import groupby
-    for_groupby_tbl0 = pd.DataFrame()
-    for_groupby_tbl0[['_c0','_c1']] = tbl0[['_c1','_c2']].copy()
-    for_groupby_tbl0 = for_groupby_tbl0.sort_values(['_c1'])
-    groupby_name = for_groupby_tbl0.groupby(['_c0'],as_index=False).agg(
-        {
-            '_c1':':'.join
-        }
-    )
+    tabla10=tbl0.groupby('_c1')['_c2'].apply(list).reset_index()
+    for i in range(5):
+        tabla10['_c2'][i].sort()
+        tabla10['_c2'][i]=str(tabla10['_c2'][i])[1:-1].replace(',',':').replace(' ','')
+        tabla10['_c2'][i]=tabla10['_c2'][i]
+    groupby_name=tabla10.set_index('_c1')    
     return groupby_name
 
 
